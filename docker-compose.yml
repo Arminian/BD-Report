@@ -1,0 +1,103 @@
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:latest
+    container_name: weather-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-weather_app}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+    volumes:
+      - postgres_data:/var/lib/postgresql # Docker managed volume
+    ports:
+      - "5432:5432" # Default port
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres}"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+    networks:
+      - weather-network
+
+
+  # Backend API
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: weather-backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      PORT: ${PORT:-5000}
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:-weather_app}
+      DB_USER: ${DB_USER:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-postgres}
+      EXTERNAL_API_KEY: ${EXTERNAL_API_KEY}
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:3000}
+    env_file:
+      .env
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./logs:/app/logs
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:5000/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - weather-network
+
+
+  # Frontend API
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: weather-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      VITE_API_URL: http://backend:5000
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - weather-network
+
+    
+  # pgAdmin4 Web UI for PostgreSQL database
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    restart: always
+    ports:
+      - "8888:80" # Expose Web UI to port 8888
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: postgresql
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin # Docker managed volume
+
+volumes:
+  postgres_data:
+    driver: local
+  pgadmin_data:
+
+networks:
+  weather-network:
+    driver: bridge

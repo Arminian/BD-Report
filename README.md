@@ -1,21 +1,99 @@
 # BD Weather Report Application
 
-Web application for weather report using OpenWeather, built with React Router v7.
+Web application for city weather report using OpenWeather API, built with React Router and NodeJS/Express.
 
-## Docker Deployment
+## Features
+- 🕒 **Real-time weather updates** <br>
+*Update is every 2 hours as per OpenWeather pricing: https://openweathermap.org/price*
+- ⭐ **Dashboard with favorites** <br>
+*Favorite city cards provide weather overview*
+- ✏️ **Customizable dashboard** <br>
+*Add a city with search navigation and remove on city pages*
+- 🍃 **In-depth weather conditions** <br>
+*City pages provide all available OpenWeather conditions*
+
+
+## Quick Start
 
 To build and run using Docker:
 
 ```bash
-docker build -t my-app .
+# Build Docker files
+docker compose build
 
-# Run the container
-docker run -p 3000:3000 my-app
+# Run Docker container
+docker compose up 
 ```
 
-## Styling
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+## Important Modules
+### Frontend
+- Tailwind CSS
+- React router v7
+- Typescript
+- Vite
+
+### Backend
+- Axios
+- Cors
+- Dotenv
+- Express
+- PG
+- Node-Cron
+
+
+## Project Structure
+```
+├── backend
+│   ├── Dockerfile
+│   ├── eslint.config.js
+│   ├── package.json
+│   └── src
+│       ├── config
+│       │   └── db.js                 -- posgres connection
+│       ├── jobs
+│       │   └── weatherUpdateJob.js   -- update db every two hours
+│       ├── routes
+│       │   └── weatherRoutes         -- api endpoints
+│       ├── scripts
+│       │   └── initDatabase.js       -- create db & tables
+│       ├── server.js                 -- express entry point
+│       └── services
+│           ├── openWeatherService.js -- openweather communication
+│           └── weatherService.js     -- backend server logic
+
+├── frontend
+│   ├── Dockerfile
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── vite.config.ts
+│   ├── react-router.config.ts
+│   ├── app
+│   │   ├── components
+│   │   │   ├── CityCard.tsx
+│   │   │   ├── Footer.tsx
+│   │   │   └── Navigation.tsx
+│   │   ├── routes
+│   │   │   ├── about.tsx
+│   │   │   ├── city.$id.tsx
+│   │   │   ├── dashboard.tsx
+│   │   │   └── _layout.tsx
+│   │   ├── routes.ts
+│   │   ├── services
+│   │   │   └── weatherApi.ts
+│   │   ├── main.css
+│   │   ├── root.tsx
+│   │   ├── postcss.config.js
+│   │   └── tailwind.config.js
+│   └── public
+│       ├── favicon.ico
+│       └── weather-icons
+
+├── docker-compose.yml                -- runs your docker container
+├── download_ico.sh
+├── package.json
+└── README.md
+```
 
 ---
 
