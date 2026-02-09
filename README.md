@@ -2,7 +2,7 @@
 
 Web application for city weather report using OpenWeather API, built with React Router and NodeJS/Express.
 
-## Features
+## 💡 Features
 - 🕒 **Real-time weather updates** <br>
 *Update is every 2 hours as per OpenWeather pricing: https://openweathermap.org/price*
 - ⭐ **Dashboard with favorites** <br>
@@ -13,7 +13,7 @@ Web application for city weather report using OpenWeather API, built with React 
 *City pages provide all available OpenWeather conditions*
 
 
-## Quick Start
+## ⚙️ Quick Start
 
 To build and run using Docker:
 
@@ -26,7 +26,7 @@ docker compose up
 ```
 
 
-## Important Modules
+## 💿 Important Modules
 ### Frontend
 - Tailwind CSS
 - React router v7
@@ -42,7 +42,7 @@ docker compose up
 - Node-Cron
 
 
-## Project Structure
+## 🔌 Project Structure
 ```
 ├── backend
 │   ├── Dockerfile
@@ -96,6 +96,12 @@ docker compose up
 └── README.md
 ```
 
+## 📸 Screenshots
+
+<img src="https://i.postimg.cc/SYksMnQr/Screenshot-20260209-074628.png" alt="Home page">
+
+<img src="https://i.postimg.cc/T5fwDK2b/Screenshot-20260209-074640.png" alt="Riga city page">
+
 ---
 
-Built for demonstration 🤡 with React Router v7.
+Built for demonstration 🛐 with React Router v7.
