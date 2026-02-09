@@ -98,9 +98,9 @@ docker compose up
 
 ## 📸 Screenshots
 
-<img src="https://i.postimg.cc/SYksMnQr/Screenshot-20260209-074628.png" alt="Home page">
+<img src="https://i.postimg.cc/ZnyyXN1w/Screenshot_20260209_074640.png" alt="Home page">
 
-<img src="https://i.postimg.cc/T5fwDK2b/Screenshot-20260209-074640.png" alt="Riga city page">
+<img src="https://i.postimg.cc/8crrxvqq/Screenshot_20260209_074628.png" alt="Riga city page">
 
 ---
 
