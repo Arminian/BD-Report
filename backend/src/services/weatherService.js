@@ -261,10 +261,10 @@ class WeatherService {
 
     if (units === 'imperial') {
       // Convert °C to °F
-      converted.temperature = +(converted.temperature * 9/5).toFixed(2) + 32;
-      converted.feels_like = +(converted.feels_like * 9/5).toFixed(2) + 32;
+      converted.temperature = Math.round((converted.temperature * 9/5 + 32) * 100) / 100;
+      converted.feels_like = Math.round((converted.feels_like * 9/5 + 32) * 100) / 100;
       // Convert m/s to mph
-      converted.wind_speed = +(converted.wind_speed * 2.237).toFixed(2);
+      converted.wind_speed = Math.round(converted.wind_speed * 2.237 * 100) / 100;
     } else if (units === 'standard') {
       // Convert °C to K
       converted.temperature = converted.temperature + 273.15;

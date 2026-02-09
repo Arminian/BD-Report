@@ -35,18 +35,18 @@ export default function Navigation({ units = 'metric', onUnitsChange }: Navigati
   };
 
   return (
-    <nav className="bg-white/95 backdrop-blur-md border-b border-warm-peach/20 sticky top-0 z-50 shadow-warm">
+    <nav className="bg-white/95 backdrop-blur-md border-b border-orange-400/20 sticky top-0 z-50 shadow-lg shadow-orange-500/15">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-25">
           <Link 
             to="/" 
             className="flex items-center gap-3 no-underline group"
           >
-            <div className="bg-warm-gradient rounded-2xl p-3 shadow-warm group-hover:scale-110 transition-transform">
+            <div className="bg-gradient-to-br from-amber-400 via-orange-400 to-orange-500 rounded-2xl p-3 shadow-lg shadow-orange-500/15 group-hover:scale-110 transition-transform">
               <span className="text-3xl">☀️</span>
             </div>
-            <span className="text-2xl sm:text-3xl font-bold bg-warm-gradient bg-clip-text text-transparent font-display">
-              SunWeather
+            <span className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-amber-400 via-orange-400 to-orange-500 bg-clip-text text-transparent">
+              BD Report
             </span>
           </Link>
           
@@ -56,8 +56,8 @@ export default function Navigation({ units = 'metric', onUnitsChange }: Navigati
                 to="/" 
                 className={`text-base sm:text-lg font-medium no-underline px-4 sm:px-6 py-2.5 rounded-xl transition-all ${
                   location.pathname === '/' 
-                    ? 'bg-warm-gradient text-white shadow-warm' 
-                    : 'text-warm-brown hover:bg-soft-cream'
+                    ? 'bg-gradient-to-r from-amber-400 via-orange-400 to-orange-500 text-white shadow-lg shadow-orange-500/15' 
+                    : 'text-stone-700 hover:bg-orange-50'
                 }`}
               >
                 Home
@@ -68,8 +68,8 @@ export default function Navigation({ units = 'metric', onUnitsChange }: Navigati
                 to="/about" 
                 className={`text-base sm:text-lg font-medium no-underline px-4 sm:px-6 py-2.5 rounded-xl transition-all ${
                   location.pathname === '/about' 
-                    ? 'bg-warm-gradient text-white shadow-warm' 
-                    : 'text-warm-brown hover:bg-soft-cream'
+                    ? 'bg-gradient-to-r from-amber-400 via-orange-400 to-orange-500 text-white shadow-lg shadow-orange-500/15' 
+                    : 'text-stone-700 hover:bg-orange-50'
                 }`}
               >
                 About
@@ -77,7 +77,7 @@ export default function Navigation({ units = 'metric', onUnitsChange }: Navigati
             </li>
             <li className="relative" ref={settingsRef}>
               <button 
-                className="bg-sunset-orange text-white border-none px-4 sm:px-6 py-2.5 rounded-xl text-base sm:text-lg font-semibold cursor-pointer transition-all hover:bg-warm-peach hover:shadow-warm flex items-center gap-2"
+                className="bg-orange-500 text-white border-none px-4 sm:px-6 py-2.5 rounded-xl text-base sm:text-lg font-semibold cursor-pointer transition-all hover:bg-orange-400 hover:shadow-lg hover:shadow-orange-500/15 flex items-center gap-2"
                 onClick={() => setShowSettings(!showSettings)}
               >
                 <span className="text-xl">⚙️</span>
@@ -85,39 +85,39 @@ export default function Navigation({ units = 'metric', onUnitsChange }: Navigati
               </button>
               
               {showSettings && (
-                <div className="absolute top-full right-0 mt-3 bg-white border border-warm-peach/30 rounded-2xl p-6 shadow-warm-lg min-w-[280px] z-50">
-                  <h3 className="mb-4 text-lg text-warm-brown font-bold font-display">Measurement Units</h3>
+                <div className="absolute top-full right-0 mt-3 bg-white border border-orange-400/30 rounded-2xl p-6 shadow-xl shadow-orange-500/20 min-w-[280px] z-50">
+                  <h3 className="mb-4 text-lg text-stone-700 font-bold">Measurement Units</h3>
                   <div className="flex flex-col gap-3">
-                    <label className="flex items-center gap-3 cursor-pointer text-warm-brown hover:bg-soft-cream p-3 rounded-xl transition-colors">
+                    <label className="flex items-center gap-3 cursor-pointer text-stone-700 hover:bg-orange-50 p-3 rounded-xl transition-colors">
                       <input
                         type="radio"
                         name="units"
                         value="metric"
                         checked={units === 'metric'}
                         onChange={() => handleUnitsChange('metric')}
-                        className="cursor-pointer w-5 h-5 accent-sunset-orange"
+                        className="cursor-pointer w-5 h-5 accent-orange-500"
                       />
                       <span className="text-base font-medium">Metric (°C, m/s)</span>
                     </label>
-                    <label className="flex items-center gap-3 cursor-pointer text-warm-brown hover:bg-soft-cream p-3 rounded-xl transition-colors">
+                    <label className="flex items-center gap-3 cursor-pointer text-stone-700 hover:bg-orange-50 p-3 rounded-xl transition-colors">
                       <input
                         type="radio"
                         name="units"
                         value="imperial"
                         checked={units === 'imperial'}
                         onChange={() => handleUnitsChange('imperial')}
-                        className="cursor-pointer w-5 h-5 accent-sunset-orange"
+                        className="cursor-pointer w-5 h-5 accent-orange-500"
                       />
                       <span className="text-base font-medium">Imperial (°F, mph)</span>
                     </label>
-                    <label className="flex items-center gap-3 cursor-pointer text-warm-brown hover:bg-soft-cream p-3 rounded-xl transition-colors">
+                    <label className="flex items-center gap-3 cursor-pointer text-stone-700 hover:bg-orange-50 p-3 rounded-xl transition-colors">
                       <input
                         type="radio"
                         name="units"
                         value="standard"
                         checked={units === 'standard'}
                         onChange={() => handleUnitsChange('standard')}
-                        className="cursor-pointer w-5 h-5 accent-sunset-orange"
+                        className="cursor-pointer w-5 h-5 accent-orange-500"
                       />
                       <span className="text-base font-medium">Standard (K, m/s)</span>
                     </label>

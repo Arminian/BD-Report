@@ -78,8 +78,8 @@ export default function Dashboard() {
     return (
       <div className="flex items-center justify-center py-20">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-sunset-orange border-t-transparent mb-4"></div>
-          <p className="text-xl text-warm-brown font-medium">Loading your weather...</p>
+          <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-orange-500 border-t-transparent mb-4"></div>
+          <p className="text-xl text-stone-700 font-medium">Loading your weather...</p>
         </div>
       </div>
     );
@@ -89,24 +89,24 @@ export default function Dashboard() {
     <div className="flex flex-col gap-10">
       {/* Hero Section */}
       <div className="text-center mb-4">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-4 font-display drop-shadow-lg">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-amber-400 via-orange-400 to-orange-500 bg-clip-text text-transparent drop-shadow-lg">
           Your Weather Dashboard
         </h1>
-        <p className="text-lg sm:text-xl text-warm-white/90 font-medium">
+        <p className="text-lg sm:text-xl text-orange-50/90 font-medium">
           Track weather conditions across your favorite cities
         </p>
       </div>
 
       {/* Search Section */}
       <form onSubmit={handleAddCity} className="max-w-4xl mx-auto w-full">
-        <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-warm-lg p-3 border border-warm-peach/20">
+        <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl shadow-orange-500/20 p-3 border border-orange-400/20">
           <div className="flex gap-3">
             <div className="flex-1 relative">
               <span className="absolute left-5 top-1/2 -translate-y-1/2 text-2xl">🔍</span>
               <input
                 type="text"
-                className="w-full pl-14 pr-6 py-4 bg-transparent border-none text-lg text-warm-brown placeholder-warm-gray font-medium focus:outline-none"
-                placeholder="Search for a city... (e.g., London, Tokyo, Paris)"
+                className="w-full pl-14 pr-6 py-4 bg-transparent border-none text-lg text-stone-700 placeholder-stone-500 font-medium focus:outline-none"
+                placeholder="Search for a city..."
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 disabled={adding}
@@ -114,7 +114,7 @@ export default function Dashboard() {
             </div>
             <button 
               type="submit" 
-              className="px-8 py-4 bg-warm-gradient text-white border-none rounded-2xl text-lg font-bold cursor-pointer transition-all hover:shadow-warm-lg hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 whitespace-nowrap"
+              className="px-8 py-4 bg-gradient-to-r from-amber-400 via-orange-400 to-orange-500 text-white border-none rounded-2xl text-lg font-bold cursor-pointer transition-all hover:shadow-xl hover:shadow-orange-500/20 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 whitespace-nowrap"
               disabled={adding || !searchInput.trim()}
             >
               {adding ? (
@@ -143,11 +143,11 @@ export default function Dashboard() {
 
       {/* Cities Grid */}
       {cities.length === 0 ? (
-        <div className="text-center py-20">
-          <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-12 max-w-md mx-auto shadow-warm-lg border border-warm-peach/20">
+        <div className="text-center py-30">
+          <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-12 max-w-md mx-auto shadow-xl shadow-orange-500/20 border border-orange-400/20">
             <span className="text-7xl mb-6 block">🌤️</span>
-            <h2 className="text-3xl font-bold text-warm-brown mb-3 font-display">No cities yet</h2>
-            <p className="text-warm-gray text-lg">
+            <h2 className="text-3xl font-bold text-stone-700 mb-3">No cities yet</h2>
+            <p className="text-stone-500 text-lg">
               Start by adding your first city using the search bar above
             </p>
           </div>

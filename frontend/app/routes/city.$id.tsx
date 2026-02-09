@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router";
 import { weatherApi, type City } from "../services/weatherApi";
+import WeatherIcon from "../components/WeatherIcon";
 
 export default function CityDetail() {
   const { id } = useParams();
@@ -77,7 +78,7 @@ export default function CityDetail() {
     return (
       <div className="flex items-center justify-center py-20">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-sunset-orange border-t-transparent mb-4"></div>
+          <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-orange-500 border-t-transparent mb-4"></div>
           <p className="text-xl text-white font-medium drop-shadow-lg">Loading city details...</p>
         </div>
       </div>
@@ -116,7 +117,7 @@ export default function CityDetail() {
       <div className="flex flex-wrap justify-between items-center gap-4 mb-8">
         <Link 
           to="/" 
-          className="px-6 py-3 bg-white/95 backdrop-blur-sm text-warm-brown border-2 border-warm-peach/30 rounded-2xl text-base font-bold no-underline inline-flex items-center gap-2 transition-all hover:bg-warm-gradient hover:text-white hover:border-transparent shadow-warm"
+          className="px-6 py-3 bg-white/95 backdrop-blur-sm text-stone-700 border-2 border-orange-400/30 rounded-2xl text-base font-bold no-underline inline-flex items-center gap-2 transition-all hover:bg-gradient-to-r from-amber-400 via-orange-400 to-orange-500 hover:text-white hover:border-transparent shadow-lg shadow-orange-500/15"
         >
           <span className="text-xl">←</span>
           Back to Dashboard
@@ -141,25 +142,25 @@ export default function CityDetail() {
       )}
 
       {/* Main Weather Card */}
-      <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-warm-lg border border-warm-peach/20 overflow-hidden">
+      <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl shadow-orange-500/20 border border-orange-400/20 overflow-hidden">
         {/* Header Section with Gradient */}
-        <div className="bg-warm-gradient p-8 sm:p-12 relative overflow-hidden">
+        <div className="bg-gradient-to-r from-amber-400 via-orange-400 to-orange-500 p-8 sm:p-12 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
           <div className="relative z-10">
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-8">
-              <div className="bg-white/95 backdrop-blur-sm rounded-3xl p-6 shadow-warm">
-                <img 
-                  src={`../../public/weather-icons/${city.icon}@2x.png`}
-                  alt={city.weather_description}
-                  className="w-32 h-32 sm:w-40 sm:h-40"
-                />
+              <div className="bg-white/95 backdrop-blur-sm rounded-3xl p-6 shadow-lg shadow-orange-500/15">
+                <WeatherIcon 
+                icon={city.icon}
+                description={city.weather_description}
+                size="small"
+              />
               </div>
               <div className="flex-1 text-white">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-3 font-display drop-shadow-lg">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-3  drop-shadow-lg">
                   {city.name}
                 </h1>
                 <p className="text-xl sm:text-2xl font-medium mb-4 opacity-90">{city.country}</p>
-                <div className="text-6xl sm:text-7xl font-black mb-4 drop-shadow-lg font-display">
+                <div className="text-6xl sm:text-7xl font-black mb-4 drop-shadow-lg ">
                   {Math.round(city.temperature)}{getTemperatureUnit()}
                 </div>
                 <p className="text-2xl font-semibold capitalize opacity-90">{city.weather_description}</p>
@@ -171,63 +172,63 @@ export default function CityDetail() {
         {/* Details Grid */}
         <div className="p-8 sm:p-12">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            <div className="bg-gradient-to-br from-soft-cream to-warm-white p-6 rounded-2xl border border-warm-peach/20 shadow-sm">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-50 p-6 rounded-2xl border border-orange-400/20 shadow-sm">
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-3xl">🌡️</span>
-                <span className="text-warm-gray text-sm uppercase tracking-wider font-bold">Feels Like</span>
+                <span className="text-stone-500 text-sm uppercase tracking-wider font-bold">Feels Like</span>
               </div>
-              <span className="text-3xl font-black text-warm-brown font-display">
+              <span className="text-3xl font-black text-stone-700 ">
                 {Math.round(city.feels_like)}{getTemperatureUnit()}
               </span>
             </div>
 
             {city.pressure !== null && city.pressure !== undefined && (
-              <div className="bg-gradient-to-br from-soft-cream to-warm-white p-6 rounded-2xl border border-warm-peach/20 shadow-sm">
+              <div className="bg-gradient-to-br from-orange-50 to-orange-50 p-6 rounded-2xl border border-orange-400/20 shadow-sm">
                 <div className="flex items-center gap-3 mb-2">
                   <span className="text-3xl">🎚️</span>
-                  <span className="text-warm-gray text-sm uppercase tracking-wider font-bold">Pressure</span>
+                  <span className="text-stone-500 text-sm uppercase tracking-wider font-bold">Pressure</span>
                 </div>
-                <span className="text-3xl font-black text-warm-brown font-display">{city.pressure} hPa</span>
+                <span className="text-3xl font-black text-stone-700 ">{city.pressure} hPa</span>
               </div>
             )}
 
-            <div className="bg-gradient-to-br from-soft-cream to-warm-white p-6 rounded-2xl border border-warm-peach/20 shadow-sm">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-50 p-6 rounded-2xl border border-orange-400/20 shadow-sm">
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-3xl">💧</span>
-                <span className="text-warm-gray text-sm uppercase tracking-wider font-bold">Humidity</span>
+                <span className="text-stone-500 text-sm uppercase tracking-wider font-bold">Humidity</span>
               </div>
-              <span className="text-3xl font-black text-warm-brown font-display">{city.humidity}%</span>
+              <span className="text-3xl font-black text-stone-700 ">{city.humidity}%</span>
             </div>
 
-            <div className="bg-gradient-to-br from-soft-cream to-warm-white p-6 rounded-2xl border border-warm-peach/20 shadow-sm">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-50 p-6 rounded-2xl border border-orange-400/20 shadow-sm">
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-3xl">💨</span>
-                <span className="text-warm-gray text-sm uppercase tracking-wider font-bold">Wind Speed</span>
+                <span className="text-stone-500 text-sm uppercase tracking-wider font-bold">Wind Speed</span>
               </div>
-              <span className="text-3xl font-black text-warm-brown font-display">
-                {city.wind_speed.toFixed(1)} {getWindSpeedUnit()}
+              <span className="text-3xl font-black text-stone-700 ">
+                {city.wind_speed} {getWindSpeedUnit()}
               </span>
             </div>
 
             {city.wind_degree !== null && city.wind_degree !== undefined && (
-              <div className="bg-gradient-to-br from-soft-cream to-warm-white p-6 rounded-2xl border border-warm-peach/20 shadow-sm">
+              <div className="bg-gradient-to-br from-orange-50 to-orange-50 p-6 rounded-2xl border border-orange-400/20 shadow-sm">
                 <div className="flex items-center gap-3 mb-2">
                   <span className="text-3xl">🧭</span>
-                  <span className="text-warm-gray text-sm uppercase tracking-wider font-bold">Wind Direction</span>
+                  <span className="text-stone-500 text-sm uppercase tracking-wider font-bold">Wind Direction</span>
                 </div>
-                <span className="text-3xl font-black text-warm-brown font-display">
+                <span className="text-3xl font-black text-stone-700 ">
                   {getWindDirection(city.wind_degree)} ({city.wind_degree}°)
                 </span>
               </div>
             )}
 
             {city.clouds !== null && city.clouds !== undefined && (
-              <div className="bg-gradient-to-br from-soft-cream to-warm-white p-6 rounded-2xl border border-warm-peach/20 shadow-sm">
+              <div className="bg-gradient-to-br from-orange-50 to-orange-50 p-6 rounded-2xl border border-orange-400/20 shadow-sm">
                 <div className="flex items-center gap-3 mb-2">
                   <span className="text-3xl">☁️</span>
-                  <span className="text-warm-gray text-sm uppercase tracking-wider font-bold">Cloudiness</span>
+                  <span className="text-stone-500 text-sm uppercase tracking-wider font-bold">Cloudiness</span>
                 </div>
-                <span className="text-3xl font-black text-warm-brown font-display">{city.clouds}%</span>
+                <span className="text-3xl font-black text-stone-700 ">{city.clouds}%</span>
               </div>
             )}
 
@@ -237,7 +238,7 @@ export default function CityDetail() {
                   <span className="text-3xl">🌧️</span>
                   <span className="text-blue-700 text-sm uppercase tracking-wider font-bold">Rain (1h)</span>
                 </div>
-                <span className="text-3xl font-black text-blue-800 font-display">{city.rain_1h} mm</span>
+                <span className="text-3xl font-black text-blue-800 ">{city.rain_1h} mm</span>
               </div>
             )}
 
@@ -247,16 +248,16 @@ export default function CityDetail() {
                   <span className="text-3xl">❄️</span>
                   <span className="text-gray-700 text-sm uppercase tracking-wider font-bold">Snow (1h)</span>
                 </div>
-                <span className="text-3xl font-black text-gray-800 font-display">{city.snow_1h} mm</span>
+                <span className="text-3xl font-black text-gray-800 ">{city.snow_1h} mm</span>
               </div>
             )}
 
-            <div className="bg-gradient-to-br from-soft-cream to-warm-white p-6 rounded-2xl border border-warm-peach/20 shadow-sm">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-50 p-6 rounded-2xl border border-orange-400/20 shadow-sm">
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-3xl">🕐</span>
-                <span className="text-warm-gray text-sm uppercase tracking-wider font-bold">Last Updated</span>
+                <span className="text-stone-500 text-sm uppercase tracking-wider font-bold">Last Updated</span>
               </div>
-              <span className="text-xl font-bold text-warm-brown">
+              <span className="text-xl font-bold text-stone-700">
                 {new Date(city.updated_at).toLocaleTimeString()}
               </span>
             </div>
