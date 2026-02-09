@@ -48,6 +48,7 @@ docker compose up
 │   ├── Dockerfile
 │   ├── eslint.config.js
 │   ├── package.json
+│   ├── wait-for-db.sh                -- await postgres to start db
 │   └── src
 │       ├── config
 │       │   └── db.js                 -- posgres connection
@@ -70,27 +71,27 @@ docker compose up
 │   ├── react-router.config.ts
 │   ├── app
 │   │   ├── components
-│   │   │   ├── CityCard.tsx
-│   │   │   ├── Footer.tsx
-│   │   │   └── Navigation.tsx
+│   │   │   ├── CityCard.tsx          -- dynamic city cards
+│   │   │   ├── Footer.tsx            -- page footer
+│   │   │   ├── Navigation.tsx        -- navigation bar
+│   │   │   └── WeatherIcon.tsx       -- weather icons with backup
 │   │   ├── routes
-│   │   │   ├── about.tsx
-│   │   │   ├── city.$id.tsx
-│   │   │   ├── dashboard.tsx
-│   │   │   └── _layout.tsx
-│   │   ├── routes.ts
+│   │   │   ├── about.tsx             -- about page
+│   │   │   ├── city.$id.tsx          -- city-specific page
+│   │   │   └── dashboard.tsx         -- index/home page
 │   │   ├── services
-│   │   │   └── weatherApi.ts
-│   │   ├── main.css
+│   │   │   └── weatherApi.ts         -- making api calls
+│   │   ├── routes.ts
+│   │   ├── app.css
 │   │   ├── root.tsx
-│   │   ├── postcss.config.js
+│   │   ├── postcss.config.js         -- postcss because tailwind issues
 │   │   └── tailwind.config.js
 │   └── public
 │       ├── favicon.ico
-│       └── weather-icons
+│       └── weather-icons             -- icons are taken from here
 
 ├── docker-compose.yml                -- runs your docker container
-├── download_ico.sh
+├── download_ico.sh                   -- initial icons download (dev only)
 ├── package.json
 └── README.md
 ```
