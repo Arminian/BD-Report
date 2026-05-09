@@ -2,6 +2,8 @@
 
 Web application for city weather report using OpenWeather API, built with React Router and NodeJS/Express.
 
+Demo available [here](https://bd-report-production.up.railway.app/)
+
 ## 💡 Features
 - 🕒 **Real-time weather updates** <br>
 *Update is every 2 hours as per OpenWeather pricing: https://openweathermap.org/price*
