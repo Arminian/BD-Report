@@ -259,6 +259,8 @@ class WeatherService {
 
     const converted = { ...weatherData };
 
+    const toNumber = n => (typeof n === 'number' && Number.isFinite(n)) ? n : Number(n);
+
     if (units === 'imperial') {
       // Convert °C to °F
       converted.temperature = Math.round((converted.temperature * 9/5 + 32) * 100) / 100;
@@ -267,8 +269,8 @@ class WeatherService {
       converted.wind_speed = Math.round(converted.wind_speed * 2.237 * 100) / 100;
     } else if (units === 'standard') {
       // Convert °C to K
-      converted.temperature = converted.temperature + 273.15;
-      converted.feels_like = converted.feels_like + 273.15;
+      converted.temperature = toNumber(converted.temperature) + 273.15;;
+      converted.feels_like = toNumber(converted.feels_like) + 273.15;;
     }
 
     // Rounded to 2 decimals
